@@ -32,7 +32,7 @@ echo $CODE | cut -d "\"" -f 2 | read LINK
 # Getting the straight links:
 GOT_CODE=$(exec curl -s "$LINK")
 USEFUL_CODE=$(echo $GOT_CODE | grep "url240" | head -n 1 | sed "s/.*url240/url240/")
-RESULT=$(echo $USEFUL_CODE | cut -d "=" -f $FIELD_NUM | cut -d "?" -f 1)
+RESULT=$(echo $USEFUL_CODE | cut -d "=" -f $FIELD_NUM | cut -d "?" -f 1 | sed "s/https:/http:/")
 
 # Test line
 #echo $RESULT
