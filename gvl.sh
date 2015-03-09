@@ -34,7 +34,7 @@ LINK=$(echo $CODE | cut -d "\"" -f 2)
 
 # Getting the straight links:
 GOT_CODE=$(exec curl -s "$LINK")
-USEFUL_CODE=$(echo $GOT_CODE | grep "url240" | head -n 1 | sed "s/.*url240/url240/" | sed "s/cache.*//")
+USEFUL_CODE=$(echo $GOT_CODE | grep "url240" | head -n 1 | sed "s/.*url240/url240/" | sed "s/cache.*//" | sed "s/jpg=htt.*//")
 if [[ $1 = "max" ]] then
   NUM_OF_SEPARATORS=$(echo $USEFUL_CODE | grep -o "=" | wc -l)
   FIELD_NUM=$NUM_OF_SEPARATORS
@@ -45,7 +45,7 @@ RESULT=$(echo $USEFUL_CODE | cut -d "=" -f $FIELD_NUM | cut -d "?" -f 1 | sed "s
 
 # Test line(s)
 #echo "echo USEFUL_CODE | grep -o "=" | wc -l ==== `echo $USEFUL_CODE | grep -o "=" | wc -l`"
-#echo "Useful_code is $USEFUL_CODE"
+echo "Useful_code is $USEFUL_CODE"
 #echo "Result is $RESULT"
 #echo $NUM_OF_SEPARATORS
 
